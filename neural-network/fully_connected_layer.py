@@ -13,8 +13,8 @@ class FCLayer(Layer):
         return self.output
     
     def backward_propagation(self, output_error, learning_rate):
-        input_error = output_error @ self.weights
-        weights_error = output_error @ self.input
+        input_error = output_error @ self.weights.T
+        weights_error = self.input.T @ output_error
 
         self.weights -= learning_rate * weights_error
         self.bias -= learning_rate * output_error
